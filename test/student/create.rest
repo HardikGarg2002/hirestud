@@ -1,0 +1,15 @@
+@url = http://localhost:6096
+
+###
+POST {{url}}/student
+Content-Type: application/json
+
+{
+    "name":"hardik",
+    "img_url":"anything for testing",
+    "edu_details":{
+        "univ":"DCRUST",
+        "degree":"Btech",
+        "major":"CSE"
+    }
+}
