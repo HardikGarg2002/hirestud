@@ -2,8 +2,8 @@ import mongoose from 'mongoose';
 import { IStudent } from '../common/type/student.js';
 
 const student = new mongoose.Schema<IStudent>({
-	_id: {
-		type: mongoose.Schema.Types.ObjectId,
+	id: {
+		type: String,
 		required: true,
 		auto: false,
 	},
@@ -29,6 +29,17 @@ const student = new mongoose.Schema<IStudent>({
 			trim: true,
 		},
 	},
+	kagaaz: [
+		{
+			_type: {
+				type: String,
+			},
+			img_url: {
+				type: String,
+			},
+		},
+	],
+
 	is_active: {
 		type: Boolean,
 		default: true,

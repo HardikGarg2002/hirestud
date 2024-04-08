@@ -2,6 +2,7 @@ import Joi from 'joi';
 import { IStudent } from '../type/student.js';
 
 const StudentValidationSchema = Joi.object<IStudent>({
+	id: Joi.string(),
 	name: Joi.string().alphanum().min(3).max(25).trim(true).required(),
 	img_url: Joi.string().uri().required(),
 	edu_details: Joi.object({

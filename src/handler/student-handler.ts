@@ -4,6 +4,25 @@ import StudentController from '../controller/student-controller.js';
 
 const studentController = new StudentController();
 
+export const getAll = async (req: Request, res: Response, next: NextFunction) => {
+	try {
+		const result = await studentController.getAll();
+		res.status(200).json(result);
+	} catch (e) {
+		next(e);
+	}
+};
+
+export const getById = async (req: Request, res: Response, next: NextFunction) => {
+	try {
+		const studentId = req.params.id;
+		const result = await studentController.getById(studentId);
+		res.status(200).json(result);
+	} catch (e) {
+		next(e);
+	}
+};
+
 export const create = async (req: Request, res: Response, next: NextFunction) => {
 	try {
 		const loggedInUser = { name: 'hardik', _id: '1234', date: new Date() };
