@@ -1,7 +1,6 @@
-// import { APIError, SystemError } from '/common-errors-ts';
+
 import { NextFunction, Request, Response } from 'express';
 import { AxiosError } from 'axios';
-// import { ValidationError } from 'joi';
 
 export interface JoiValidationError extends Error {
 	message: string;
@@ -12,13 +11,6 @@ interface Context {
 	key?: string;
 	label?: string;
 	value?: any;
-}
-interface ValidationError extends Error {
-	name: 'ValidationError';
-	isJoi: boolean;
-	details: ValidationErrorItem[];
-	annotate(stripColors?: boolean): string;
-	_original: any;
 }
 
 interface ValidationErrorItem {
