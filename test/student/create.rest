@@ -4,12 +4,17 @@
 POST {{url}}/student
 Content-Type: application/json
 
-{
+{   
+    "id":"stu_19001001021",
     "name":"hardik",
-    "img_url":"anything for testing",
+    "img_url":"https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     "edu_details":{
         "univ":"DCRUST",
         "degree":"Btech",
         "major":"CSE"
     }
 }
+
+###
+GET {{url}}/student/stu_19001001021
+Content-Type: application/json
