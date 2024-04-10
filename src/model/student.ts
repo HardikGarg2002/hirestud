@@ -73,6 +73,6 @@ const student = new mongoose.Schema<IStudent>({
 	},
 });
 
-const Student = mongoose.model('Student', student);
+const Student = mongoose.model<IStudent>('Student', student);
 
 export default Student;
