@@ -1,4 +1,3 @@
-
 import { NextFunction, Request, Response } from 'express';
 import { AxiosError } from 'axios';
 
@@ -46,9 +45,11 @@ export class APIError extends Error {
 }
 export class SystemError extends Error {
 	error: Error;
+	stack: any;
 	constructor(message: string, error: Error) {
 		super(message);
 		this.error = error;
+		this.stack = error.cause;
 	}
 }
 export class ConfigurationError extends Error {
@@ -58,7 +59,7 @@ export class ConfigurationError extends Error {
 }
 export const ErrorHandlerMiddleware = (error: Error, req: Request, res: Response, _next: NextFunction) => {
 	// TODO: Log the error using the common handler
-    console.log('default error handler called')
+	console.log('default error handler called');
 	if (error instanceof APIError) {
 		res.status(error.status).json({ message: error.message });
 		return;
