@@ -1,13 +1,19 @@
-import { IUser } from "./student.js";
+import { IUser } from './student.js';
 
 export interface IJob {
-    id: number; // Unique identifier for the job
-    title: string; // Title of the job
-    company: string; // Company offering the job
-    location: string; // Location of the job
-    description: string; // Description of the job
-    salary?: number; // Optional salary for the job
-    created:IUser;
-    updated:IUser;
-    is_active: boolean;
+	id: string; // Unique identifier for the job
+	title: string; // Title of the job
+	company: string; // Company offering the job
+	location: string; // Location of the job
+	description: string; // Description of the job
+	salary?: number; // Optional salary for the job
+	is_active: boolean;
+	remote?: boolean;
+	requirements: string[];
+	tags: string[];
+	technologies: string[];
+	employmentType: 'full-time' | 'part-time' | 'contract'; // Type of employment
+	experienceLevel: 'entry-level' | 'mid-level' | 'senior'; // Experience level required
+	created: IUser;
+	updated: IUser;
 }

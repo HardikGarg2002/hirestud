@@ -4,6 +4,7 @@ import cors from 'cors';
 import mongoose from 'mongoose';
 import { ConfigurationError, SystemError, ErrorHandlerMiddleware } from './common/middleware/error-middleware.js';
 import studentRouter from './route/student-route.js';
+import jobRouter from './route/job-route.js';
 
 env.config();
 const port = process.env.PORT || 3000;
@@ -20,12 +21,12 @@ async function connectToDB(mongoUri: string) {
 		await mongoose.connect(mongoUri, {
 			dbName: 'hirestud',
 		});
-    console.log('database connected successfully')
+		console.log('database connected successfully');
 	} catch (err) {
 		console.log('error in connecting to mongoDB', err);
 	}
 }
- connectToDB(MONGO_URI);
+connectToDB(MONGO_URI);
 
 app.get('/', (req, res) => {
 	res.send({
@@ -33,9 +34,15 @@ app.get('/', (req, res) => {
 		dbConnected: mongoose.connection.readyState === 1,
 	});
 });
-console.log('before student router')
 app.use('/student', studentRouter);
-console.log('after student router')
+app.use('/jobs', jobRouter);
+
+app.use((err: SystemError, req: express.Request, res: express.Response, next: express.NextFunction) => {
+	res.status(500).send({
+		error: err.message,
+		stack: err.stack,
+	});
+});
 
 app.use('*', (req, res) => {
 	res.status(404).send({
