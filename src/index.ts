@@ -28,12 +28,14 @@ async function connectToDB(mongoUri: string) {
 }
 connectToDB(MONGO_URI);
 
-app.get('/', (req, res) => {
+app.get('/home', (req, res) => {
 	res.send({
 		message: 'Service running',
 		dbConnected: mongoose.connection.readyState === 1,
 	});
 });
+app.get('/', (req, res) => res.send('Express on Vercel'));
+
 app.use('/student', studentRouter);
 app.use('/jobs', jobRouter);
 
