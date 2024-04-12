@@ -57,6 +57,18 @@ const jobSchema = new Schema<IJob>({
 		enum: ['entry-level', 'mid-level', 'senior'],
 		required: true,
 	},
+	job_creator: {
+		by: {
+			type: String,
+			default: 'college',
+		},
+		company_id: {
+			type: String,
+		},
+		college_id: {
+			type: String,
+		},
+	},
 	created: {
 		_id: {
 			type: String,

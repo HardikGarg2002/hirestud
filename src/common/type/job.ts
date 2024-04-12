@@ -1,5 +1,7 @@
 import { IUser } from './student.js';
 
+const job_creator_by = ['company', 'college'];
+
 export interface IJob {
 	id: string; // Unique identifier for the job
 	title: string; // Title of the job
@@ -14,6 +16,11 @@ export interface IJob {
 	technologies: string[];
 	employmentType: 'full-time' | 'part-time' | 'contract'; // Type of employment
 	experienceLevel: 'entry-level' | 'mid-level' | 'senior'; // Experience level required
+	job_creator: {
+		by: 'company' | 'college';
+		company_id?: string;
+		college_id?: string;
+	};
 	created: IUser;
 	updated: IUser;
 }
