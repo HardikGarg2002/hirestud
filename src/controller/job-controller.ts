@@ -6,8 +6,8 @@ import validateJobInput from '../common/validation-schema/job-validation.js';
 
 export default class JobController {
 	private jobService = new JobService();
-	public getAll = async () => {
-		return await this.jobService.getAll();
+	public getAll = async (filter: any, pagination: any, sort: any) => {
+		return await this.jobService.getAll(filter, pagination, sort);
 	};
 
 	public getById = async (id: string) => {

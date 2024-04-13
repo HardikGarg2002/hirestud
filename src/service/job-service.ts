@@ -3,8 +3,11 @@ import { IJob } from '../common/type/job.js';
 import Job from '../model/job.js';
 
 export default class JobService {
-	public async getAll(): Promise<IJob[]> {
-		return await Job.find();
+	public async getAll(filter: any, pagination: any, sort: any): Promise<IJob[]> {
+		return await Job.find(filter)
+			.sort(sort)
+			.skip((pagination.page - 1) * pagination.pageSize)
+			.limit(pagination.pageSize);
 	}
 
 	public async getById(id: string): Promise<IJob> {
