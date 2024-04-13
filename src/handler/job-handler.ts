@@ -6,7 +6,13 @@ const jobController = new JobController();
 
 export const getAll = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const result = await jobController.getAll();
+        // pagination = { page : 1, pageSize : 10 }
+        const pagination = req.query.pagination;
+        // sort = { salary : -1 }
+        const sort = req.query.sort;
+        // filter = { is_active : true }
+        const filter = req.query.filter;
+        const result = await jobController.getAll(filter,pagination,sort);
         res.status(200).json(result);
     } catch (e) {
         next(e);
