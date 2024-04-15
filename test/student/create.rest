@@ -1,7 +1,7 @@
 @url = http://localhost:6096
 
 ###
-POST {{url}}/student
+POST {{url}}/students
 Content-Type: application/json
 
 {   

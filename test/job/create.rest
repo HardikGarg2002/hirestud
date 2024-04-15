@@ -1,0 +1,33 @@
+@url = http://localhost:6096
+@jobId = 661acdf56a364b596424c405
+
+###
+POST {{url}}/jobs
+Content-Type: application/json
+
+{   
+  "id": "AIPL-3",
+  "title": "Data Scientist engineer",
+  "company": "Analytics Insights Pvt. Ltd.",
+  "location": "Gurugram, Haryana",
+  "description": "Looking for a Data Scientist to analyze complex data sets and generate insights.",
+  "salary": 1000000,
+  "is_active": true,
+  "remote": false,
+  "requirements": ["Proficiency in statistical analysis tools like Python or R", "Experience with machine learning algorithms"],
+  "tags": ["Data Science", "Machine Learning", "Python"],
+  "technologies": ["Python", "R", "Machine Learning"],
+  "employmentType": "full-time",
+  "experienceLevel": "senior"
+}
+// Employment type (string, one of: 'full-time', 'part-time', 'contract')
+// Experience level required (string, one of: 'entry-level', 'mid-level', 'senior')
+
+###
+GET {{url}}/jobs/{{jobId}}
+Content-Type: application/json
+
+
+###
+GET {{url}}/jobs
+Content-Type: application/json

@@ -36,7 +36,7 @@ app.get('/home', (req, res) => {
 });
 app.get('/', (req, res) => res.send('Express on Vercel'));
 
-app.use('/student', studentRouter);
+app.use('/students', studentRouter);
 app.use('/jobs', jobRouter);
 
 app.use((err: SystemError, req: express.Request, res: express.Response, next: express.NextFunction) => {

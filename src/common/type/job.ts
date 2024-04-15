@@ -24,3 +24,12 @@ export interface IJob {
 	created: IUser;
 	updated: IUser;
 }
+
+export interface IJobWithMeta {
+	meta: {
+		page: number;
+		pageSize: number;
+		total: number;
+	};
+	data: IJob[];
+}
