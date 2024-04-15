@@ -1,13 +1,18 @@
 import { BusinessError } from '../common/middleware/error-middleware.js';
-import { IJob } from '../common/type/job.js';
+import { IJob, IJobWithMeta } from '../common/type/job.js';
 import Job from '../model/job.js';
+// import { convertFilter } from '../common/validation-schema/job-validation.js';
+// import { convertFilterToMongo } from 'filter-library';
 
 export default class JobService {
-	public async getAll(filter: any, pagination: any, sort: any): Promise<IJob[]> {
-		return await Job.find(filter)
+	public async getAll(filter: any, pagination: any, sort: any): Promise<IJobWithMeta> {
+		// const dbFilter = convertFilterToMongo(filter);
+		const result = await Job.find(filter)
 			.sort(sort)
-			.skip((pagination.page - 1) * pagination.pageSize)
-			.limit(pagination.pageSize);
+			.skip((pagination?.page - 1) * pagination?.pageSize || 0)
+			.limit(pagination?.pageSize || 10);
+		const total = await Job.countDocuments(filter);
+		return { data: result, meta: { total, page: pagination?.page || 1, pageSize: pagination?.pageSize || 10 } };
 	}
 
 	public async getById(id: string): Promise<IJob> {
